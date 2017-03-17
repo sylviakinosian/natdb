@@ -161,3 +161,15 @@
     data <- .df.melt(data, "species")
     return(data) 
 }
+
+.pigot.2015 <- function(...){
+    data <- read.xls(ft_get_si("10.5061/dryad.fd986","Database%20S1%20Pigot%2c%20Trisos%20and%20Tobias.xls"), as.is=TRUE)
+    data <- data[,-c(26:28)]
+    for(i in 12:15)
+    	data[,i] <- as.logical(data[,i])
+    names(data)[3:11] <- c("Min.Elevation","Max.Elevation","log.Bill.Length","log.Bill.Width","log.Bill.Depth","log.Tarsus.Length","log.Kipps.Distance","log.Wing.Length","log.Tail.Length")
+    names(data)[26] <- "Museum.Institution.codes"
+    units <- c("NA","m","m",rep('mm',7),rep('NA',4),rep('%',10),"NA")
+    metadata <- data[,c(3:4,26)]
+    data <- .df.melt(data, "Binomial", units=units, metadata=metadata)
+}
