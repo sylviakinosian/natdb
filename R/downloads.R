@@ -170,6 +170,16 @@
     names(data)[3:11] <- c("Min.Elevation","Max.Elevation","log.Bill.Length","log.Bill.Width","log.Bill.Depth","log.Tarsus.Length","log.Kipps.Distance","log.Wing.Length","log.Tail.Length")
     names(data)[26] <- "Museum.Institution.codes"
     units <- c("NA","m","m",rep('mm',7),rep('NA',4),rep('%',10),"NA")
-    metadata <- data[,c(3:4,26)]
+    metadata <- data[,c(1,3:4,26)]
     data <- .df.melt(data, "Binomial", units=units, metadata=metadata)
 }
+
+.marx.2016 <- function(...){
+    data <- read.csv("https://ndownloader.figshare.com/files/6854532")
+    names(data)[3:7] <- c("Seed.Mass","Maximum.Height","","Leaf.Size","Leaf.Nitrogen")
+    units <- c("native/invasive","mg","m","cm2/g","cm2","specific_leaf_area")
+    metadata <- data[,2]
+    data <- .df.melt(data, "Species", units=units, metadata=metadata)
+}
+
+
