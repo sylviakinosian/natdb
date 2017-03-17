@@ -190,3 +190,9 @@
     data$species <- rownames(data)
     data <- .df.melt(data, "species", units=units)
 }
+
+#.deraison.2014 <- function(...){
+#    data <- read.xls("~/Downloads/Plant20traits.xls", sheet = 2)
+#    data$Plant.species <- #new names
+#    data <- data[,1:8]
+#}
