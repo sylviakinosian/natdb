@@ -182,4 +182,11 @@
     data <- .df.melt(data, "Species", units=units, metadata=metadata)
 }
 
-
+.olli.2015 <- function(...){
+    data <- read.table("https://datadryad.org/bitstream/handle/10255/dryad.90019/fd.txt?sequence=1", header = T, sep = '\t')
+    for(i in c(1:9,11))
+        data[,i] <- as.logical(data[,i])
+    units <- c(rep('NA',9), "micrometer", "NA")
+    data$species <- rownames(data)
+    data <- .df.melt(data, "species", units=units)
+}
