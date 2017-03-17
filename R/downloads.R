@@ -163,10 +163,10 @@
 }
 
 .pigot.2015 <- function(...){
-    data <- read.xls(ft_get_si("10.5061/dryad.fd986","Database%20S1%20Pigot%2c%20Trisos%20and%20Tobias.xls"), as.is=TRUE)
+    data <- read.xls(ft <- get <- si("10.5061/dryad.fd986","Database%20S1%20Pigot%2c%20Trisos%20and%20Tobias.xls"), as.is=TRUE)
     data <- data[,-c(26:28)]
-    for(i in 12:15)
-    	data[,i] <- as.logical(data[,i])
+        for(i in 12:15)
+    data[,i] <- as.logical(data[,i])
     names(data)[3:11] <- c("Min.Elevation","Max.Elevation","log.Bill.Length","log.Bill.Width","log.Bill.Depth","log.Tarsus.Length","log.Kipps.Distance","log.Wing.Length","log.Tail.Length")
     names(data)[26] <- "Museum.Institution.codes"
     units <- c("NA","m","m",rep('mm',7),rep('NA',4),rep('%',10),"NA")
@@ -185,7 +185,7 @@
 .olli.2015 <- function(...){
     data <- read.table("https://datadryad.org/bitstream/handle/10255/dryad.90019/fd.txt?sequence=1", header = T, sep = '\t')
     for(i in c(1:9,11))
-        data[,i] <- as.logical(data[,i])
+	data[,i] <- as.logical(data[,i])
     units <- c(rep('NA',9), "micrometer", "NA")
     data$species <- rownames(data)
     data <- .df.melt(data, "species", units=units)
